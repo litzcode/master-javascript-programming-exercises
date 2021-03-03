@@ -1,6 +1,8 @@
 // Write your function here
 
-function select (arr, obj) {
+
+// SOLUTION USING TWO FOR
+/*function select (arr, obj) {
     let newObj = {};
     for (let i=0; i<arr.length; i++) {
         for (let j=0; j<Object.keys(obj).length; j++) {
@@ -11,14 +13,46 @@ function select (arr, obj) {
     }
     return newObj;
     
+}*/
+
+// SOLUTION USING FOREACH AND MAP
+/*function select(arr, obj) {
+    let newObj = {};
+    arr.forEach(
+        element => {
+            Object.keys(obj).map(
+                key => {
+                    if (element === key) {
+                        newObj[key] = obj[key];
+                    }
+                }
+            )
+
+        }
+    )
+    return newObj;
+}*/
+
+
+// SOLUTION USING OBJECT PROPERTY hasOwnProperty
+function select (arr, obj) {
+    let newObj = {};
+    arr.forEach(
+        element => {
+            if (obj.hasOwnProperty(element) == true) {
+                newObj[element] = obj[element];
+            }
+        }
+    )
+    return newObj;
 }
 
 var arr = ['a', 'c', 'e'];
 var obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-  d: 4
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4
 };
 var output = select(arr, obj);
 console.log(output); // --> { a: 1, c: 3 }
